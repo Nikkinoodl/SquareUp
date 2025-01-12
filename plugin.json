@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "Credit Card",
+  "SystemName": "Payments.SquareUp",
+  "Version": "4.70",
+  "SupportedVersions": [ "4.70" ],
+  "Author": "Simon Bland",
+  "DisplayOrder": 2,
+  "FileName": "Nop.Plugin.Payments.SquareUp.dll",
+  "Description": "Secure credit card processing using the SquareUp API. Uses the most current version available."
+}
