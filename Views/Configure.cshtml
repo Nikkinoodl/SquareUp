@@ -1,0 +1,80 @@
+﻿@model Nop.Plugin.Payments.SquareUp.Models.ConfigurationModel
+@{
+    Layout = "_ConfigurePlugin";
+}
+<form asp-controller="PaymentSquareUp" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <b>This payment plugin uses the primary currency of the store.</b>
+                <b>Use sandbox mode for trials and testing - a sandbox access token, application key and location id can be obtained from SquareUp.</b>
+                <b>To process payments: uncheck the sandbox mode (!Important) and provide the access token, application key and location id for your account.</b>
+                <br /><hr /><br />
+
+                <div class="row">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="form-group col-md-9 form-check ">
+                        <input class="form-check-input" asp-for="UseSandbox">
+                        <label class="form-check-label" asp-for="UseSandbox"></label>
+                        <span asp-validation-for="UseSandbox" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="SandboxAccessToken"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="SandboxAccessToken" >
+                        <span asp-validation-for="SandboxAccessToken" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="SandboxApplicationKey"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="SandboxApplicationKey" >
+                        <span asp-validation-for="SandboxApplicationKey" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="SandboxLocationId"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="SandboxLocationId" >
+                        <span asp-validation-for="SandboxLocationId" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="AccessToken"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="AccessToken" >
+                        <span asp-validation-for="AccessToken" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="ApplicationKey"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="ApplicationKey" >
+                        <span asp-validation-for="ApplicationKey" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" asp-for="LocationId"></label>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="LocationId" >
+                        <span asp-validation-for="LocationId" />
+                    </div>
+                </div>
+                <div class="form-group row mt-4">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

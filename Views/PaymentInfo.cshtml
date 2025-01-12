@@ -1,0 +1,45 @@
+﻿@model Nop.Plugin.Payments.SquareUp.Models.PaymentInfoModel;
+@{
+    Layout = "";
+}
+@*Note that this requires a script tag in OnePageCheckout.cshtml and will not run without it.
+The script is loaded on pre-render of the webpage via an EventConsumer in this plugin.
+See SquareupPaymentDefaults.cs for constants.
+    <!script asp-location="Head" src="https://sandbox.web.squarecdn.com/v1/square.js"></!script>
+*@
+<!script type="text/javascript" asp-location = "Head">
+  async function main() {
+    const appId = '@Model.ApplicationKey';
+    const locationId = '@Model.LocationId';
+    const payments = Square.payments(appId, locationId);
+    const card = await payments.card();
+    await card.attach('#card-container');
+
+    async function eventHandler(event) {
+      event.preventDefault();
+
+      try {
+        const result = await card.tokenize();
+        if (result.status === 'OK') {
+          document.getElementById('paymenttoken').value = result.token;
+          console.log(`Payment token is ${result.token}`);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    const cardButton = document.getElementById('card-button');
+    cardButton.addEventListener('click', eventHandler);
+  }
+
+  main();
+ 
+</!script>
+
+<form id="payment-form">
+      <div id="card-container"></div>
+      <button id="card-button" type="button" class="btn btn-primary mr-3 mb-3">Click to use this card</button>
+</form>
+<div id="payment-status-container"></div>
+<input style="display:none;" type="hidden" id="paymenttoken" name="paymenttoken" />
